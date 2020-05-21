@@ -1,13 +1,3 @@
-create table Qcomments(Question_Id Integer, User_Id Integer, Comment Varchar(400), Foreign Key(Question_Id) references Question(Question_Id), Foreign Key(User_Id) references Users(User_Id));
-
-Create Table Intrests(User_Id Integer, Intrest Varchar(40),points varchar(20), Foreign Key(User_Id) references Users(User_Id));
-
-create table Answers(Answer_Id Integer Primary Key, Question_Id Integer, User_Id Integer, Answer Varchar(200), Answer_TIME TIMESTAMP, Foreign Key(Question_Id) references Questions(Question_Id) ON DELETE CASCADE, Foreign Key(User_Id) references Users(User_Id) ON DELETE CASCADE);
-
-create table Department(Dept_Name varchar(20) Primary Key, Domain1 varchar(20) Default 'None', Domain2 varchar(20) Default 'None', Domain3 varchar(30) Default 'None', Domain4 varchar(20) Default 'None', Domain5 varchar(20) Default 'None', Domain6 varchar(20) Default 'None', Domain7 varchar(20) Default 'None', Domain8 varchar(20) Default 'None', Domain9 varchar(20) Default 'None', Domain10 varchar(20) Default 'None');
-
-create table votes (Answer_Id Integer, Voter_Id Integer, vote Integer, QDomain Varchar(20), Foreign Key (Answer_Id) references Answers(Answer_Id), Foreign Key(Voter_Id) references Users(User_Id));
-
 create table USERS
 (
 	USER_ID INTEGER not null primary key,
@@ -20,6 +10,9 @@ create table USERS
 	DISPLAY_NAME VARCHAR(40) default 'None' not null
 )
 
+create table Department(Dept_Name varchar(20) Primary Key, Domain1 varchar(20) Default 'None', Domain2 varchar(20) Default 'None', Domain3 varchar(30) Default 'None', Domain4 varchar(20) Default 'None', Domain5 varchar(20) Default 'None', Domain6 varchar(20) Default 'None', Domain7 varchar(20) Default 'None', Domain8 varchar(20) Default 'None', Domain9 varchar(20) Default 'None', Domain10 varchar(20) Default 'None');
+
+Create Table Intrests(User_Id Integer, Intrest Varchar(40),points INTEGER, Foreign Key(User_Id) references Users(User_Id));
 
 create table QUESTIONS
 (
@@ -34,6 +27,11 @@ create table QUESTIONS
 )
 
 
+create table Qcomments(Question_Id Integer, User_Id Integer, Comment Varchar(400), Foreign Key(Question_Id) references Question(Question_Id), Foreign Key(User_Id) references Users(User_Id));
+
+create table Answers(Answer_Id Integer Primary Key, Question_Id Integer, User_Id Integer, Answer Varchar(200), Answer_TIME TIMESTAMP, Foreign Key(Question_Id) references Questions(Question_Id) ON DELETE CASCADE, Foreign Key(User_Id) references Users(User_Id) ON DELETE CASCADE);
+
+create table votes (Answer_Id Integer, Voter_Id Integer, vote Integer, QDomain Varchar(20), Foreign Key (Answer_Id) references Answers(Answer_Id), Foreign Key(Voter_Id) references Users(User_Id));
 
 insert into Department(Dept_Name, Domain1, Domain2, Domain3, Domain4, Domain5, Domain6, Domain7) values('Electrical','Digital Electronics', 'Analog Electronics', 'Basic Electrical', 'Motors', 'Networks', 'Design Of Circuit', 'Raspberry');
 insert into Department(Dept_Name, Domain1, Domain2, Domain3, Domain4, Domain5) values('Mechanical','Robotics', 'AI', 'Automation', 'Construction', 'Machine Learning');
