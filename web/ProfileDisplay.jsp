@@ -156,7 +156,7 @@
                 a = "0";
             }
             String Done;
-            PreparedStatement accept = con.prepareStatement("Select * from Questions where Question_Id = " + Id + " and Accepted_Answer = " + rs1.getString(4));
+            PreparedStatement accept = con.prepareStatement("Select * from Questions where Question_Id = " + Id + " and Accepted_Answer = '" + rs1.getString(4) + "'");
             ResultSet acc = accept.executeQuery();
             if (acc.next()) {
                 Done = "Accepted";
